@@ -1,6 +1,11 @@
 # Prueba-Ingeniero-Datos
 Prueba técnica de Ingeniería de Datos – Arquitectura Data Lake en AWS con Databricks.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Aunque el dataset oficial de NYC TLC se publica en formato Parquet, el pipeline es agnóstico al formato de entrada.
+Para efectos de esta prueba, se asume la lectura de archivos CSV/Parquet desde la capa Bronze, manteniendo el mismo diseño de arquitectura y procesamiento.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## 1. Objetivo del proyecto
 
 El objetivo de este proyecto es diseñar e implementar una arquitectura de Data Lake en AWS, utilizando Databricks como motor de procesamiento, para analizar datos de viajes de alto volumen provenientes de plataformas como Uber, Lyft, Via y Juno, a partir del dataset High Volume For-Hire Vehicle Trip Records (HVFHS) publicado por NYC TLC.
