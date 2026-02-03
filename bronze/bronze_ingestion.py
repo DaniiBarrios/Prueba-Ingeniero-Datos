@@ -1,8 +1,14 @@
 #Hay que tener en cuenta que esta capa Bronze, almacena los datos crudos provenientes del dataset HVFHS sin aplicar transformaciones de negocio.
 
+#Capa Bronze:
 
-Se agregan metadatos de ingesta para facilitar trazabilidad, auditoría y reprocesos futuros.
-Los datos se almacenan en formato Delta Lake para permitir versionamiento y confiabilidad.
+#- Almacena datos crudos del dataset HVFHS
+#- No aplica transformaciones de negocio
+#- Agrega metadatos de ingesta
+#- Almacena en formato Delta Lake
+
+#Se agregan metadatos de ingesta para facilitar trazabilidad, auditoría y reprocesos futuros.
+#Los datos se almacenan en formato Delta Lake para permitir versionamiento y confiabilidad.
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import current_timestamp, lit
