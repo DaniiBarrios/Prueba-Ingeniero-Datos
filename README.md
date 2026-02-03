@@ -19,6 +19,8 @@ Se utilizan archivos en formato CSV correspondientes a los High Volume For-Hire 
 
 La arquitectura propuesta sigue un enfoque de Lakehouse, organizada en tres capas principales: Bronze, Silver y Gold, utilizando Delta Lake como formato de almacenamiento.
 
+![Arquitectura del Data Lake](diagrams/data_lake_architecture.png)
+
 ** Arquitectura general
 
 - Fuente de datos (NYC TLC CSV)
