@@ -1,10 +1,14 @@
 # Prueba-Ingeniero-Datos
 Prueba técnica de Ingeniería de Datos – Arquitectura Data Lake en AWS con Databricks.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------
-Aunque el dataset oficial de NYC TLC se publica en formato Parquet, el pipeline es agnóstico al formato de entrada.
-Para efectos de esta prueba, se asume la lectura de archivos CSV/Parquet desde la capa Bronze, manteniendo el mismo diseño de arquitectura y procesamiento.
------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>**Nota sobre el formato de los datos:**  
+> El dataset oficial de NYC TLC para High Volume For-Hire Vehicle Trip Records (HVFHS) se publica en formato **Parquet**. 
+> Aunque el dataset oficial de NYC TLC se publica en formato Parquet, el pipeline es agnóstico al formato de entrada.
+>Para efectos de esta prueba técnica, el pipeline de ingesta y procesamiento fue diseñado de forma **agnóstica al formato de entrada**, permitiendo trabajar indistintamente con archivos CSV o Parquet en la capa Bronze, sin afectar la arquitectura ni las transformaciones posteriores en las capas Silver y Gold.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 ## 1. Objetivo del proyecto
 
