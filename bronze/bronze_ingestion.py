@@ -10,6 +10,10 @@
 #Se agregan metadatos de ingesta para facilitar trazabilidad, auditoría y reprocesos futuros.
 #Los datos se almacenan en formato Delta Lake para permitir versionamiento y confiabilidad.
 
+#---------------------------------------------------------------------------------------------------------------------------------------------
+
+## Estas rutas pueden variar según el entorno (dev / qa / prod)
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import current_timestamp, lit
 
@@ -27,10 +31,10 @@ bronze_path = "path/to/datalake/bronze/hvfhs/"
 # -----------------------------------------------
 # En esta sesión hacemos lectura de datos crudos.
 # -----------------------------------------------
-df_raw = spark.read \
-    .option("header", True) \
-    .option("inferSchema", True) \
-    .csv(input_path)
+df_bronze = df_raw \
+    .withColumn("ingestion_timestamp", current_timestamp()) \
+    .withColumn("source_file", lit("hvfhs_2025_01.csv")) \
+    .withColumn("dataset_name", lit("HVFHS"))
 # --------------------------
 # Luego Agregamos metadatos
 # --------------------------
