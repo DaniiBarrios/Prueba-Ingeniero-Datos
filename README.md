@@ -168,3 +168,33 @@ En caso de no usar Unity Catalog, se pueden implementar controles a nivel de per
 -Delta Lake
 
 -Git
+
+
+**-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+
+ Se aplica OPTIMIZE con ZORDER sobre la columna trip_date en la capa Gold para compactar archivos pequeños y mejorar el rendimiento de consultas analíticas que filtran por fecha,        reduciendo el volumen de datos escaneados y optimizando el uso de recursos en Databricks.
+
+**-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------**
+
+
+## Incrementalidad avanzada y manejo de cambios (CDC)
+
+El Data Lake fue diseñado con una estrategia de procesamiento incremental, orientada a escalar con el crecimiento del volumen de datos.
+
+La ingesta se realiza principalmente mediante cargas **append**, procesando nuevos archivos o rangos de fechas sin reprocesar la totalidad del dataset. La capa Bronze conserva los datos crudos, lo que permite reprocesos controlados en caso de fallas o cambios en la lógica de negocio. Para escenarios de llegadas tardías o correcciones de datos históricos, se contempla el uso de operaciones **MERGE** en la capa Silver, permitiendo insertar nuevos registros o actualizar existentes según claves de negocio disponibles.
+
+El manejo de duplicados se realiza en la capa Silver mediante validaciones y deduplicación basada en identificadores naturales o combinaciones de campos relevantes.
+
+Delta Lake permite versionamiento de los datos, soportando estrategias de append, merge, soft deletes y consultas a snapshots históricos, facilitando auditoría, trazabilidad y rollback de información.
+
+## Gobierno de datos y seguridad
+
+El Data Lake implementa un enfoque de gobierno de datos basado en control de accesos por capas, asegurando que cada tipo de usuario acceda únicamente al nivel de información correspondiente a su rol.
+
+- La capa Bronze mantiene acceso restringido a ingenieros de datos, la capa Silver está disponible para analistas y científicos de datos, y la capa Gold expone únicamente información agregada para usuarios de negocio.
+
+Se contempla la separación de entornos (dev / qa / prod) mediante buckets y configuraciones independientes, garantizando aislamiento entre desarrollo y producción.
+
+La seguridad se gestiona mediante políticas de acceso en AWS (IAM) y controles de permisos en Databricks. En caso de no utilizar Unity Catalog, se aplican controles a nivel de permisos de almacenamiento y convenciones de acceso.
+
+La auditoría y trazabilidad de los datos se soporta mediante logs, metadatos y capacidades de versionamiento de Delta Lake, permitiendo rastrear el linaje de los datos desde la ingesta hasta la capa de consumo.
